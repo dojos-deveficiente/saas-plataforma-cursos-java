@@ -7,11 +7,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
-import java.net.URI;
 
 @RestController
 @RequestMapping("/compra")
@@ -22,12 +22,11 @@ public class CompraController {
 
 	@PostMapping
 	@Transactional
-	public ResponseEntity<?> comprar(@RequestBody @Valid CompraRequest request) {
+	public ResponseEntity<Void> comprar(@RequestBody @Valid CompraRequest request, UriComponentsBuilder uriComponentsBuilder) {
 		Compra novaCompra = request.toModel();
 		manager.persist(novaCompra);
 
-		URI uri = URI.create("http://gateway.paypal.com/payment?customId="+novaCompra.getCodigo()+"&payment="+novaCompra.getValor());
-		return ResponseEntity.status(HttpStatus.TEMPORARY_REDIRECT).location(uri).build();
+		return ResponseEntity.status(HttpStatus.TEMPORARY_REDIRECT).location(novaCompra.geraURL(uriComponentsBuilder)).build();
 	}
 	
 	

@@ -1,8 +1,6 @@
 package com.deveficiente.saascursoonline.novacompra;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.util.UUID;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,6 +9,10 @@ import javax.persistence.Id;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.math.BigDecimal;
+import java.net.URI;
+import java.time.LocalDate;
+import java.util.UUID;
 
 @Entity
 public class Compra {
@@ -45,11 +47,7 @@ public class Compra {
 		// TODO Auto-generated constructor stub
 	}
 
-	public String getCodigo() {
-		return this.codigo;
-	}
-
-	public BigDecimal getValor() {
-		return this.tipoPlano.getValor();
+	public URI geraURL(UriComponentsBuilder uriComponentsBuilder) {
+		return uriComponentsBuilder.fromHttpUrl("http://gateway.paypal.com/payment?customId={codigoNaoFacilmenteEntendivel}&payment={valorDoPlanoEscolhido").build(this.codigo, this.tipoPlano.getValor());
 	}
 }

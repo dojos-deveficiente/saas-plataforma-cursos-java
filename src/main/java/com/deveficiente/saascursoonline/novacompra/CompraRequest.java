@@ -16,6 +16,7 @@ public class CompraRequest {
     private String nome;
     @NotBlank
     @Email
+    @UniqueValue(fieldName = "email", domainClass = Compra.class)
     private String email;
     @NotNull
     @JsonFormat(shape = Shape.STRING, pattern = "dd/MM/yyyy")
@@ -35,6 +36,7 @@ public class CompraRequest {
     private TipoPlano tipoPlano;
     @NotBlank
     @Documento
+    @UniqueValue(fieldName = "documento", domainClass = Compra.class)
     private String documento;
 
     @JsonCreator
