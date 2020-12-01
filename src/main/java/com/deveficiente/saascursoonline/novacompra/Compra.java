@@ -1,5 +1,6 @@
 package com.deveficiente.saascursoonline.novacompra;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.UUID;
 
@@ -44,4 +45,11 @@ public class Compra {
 		// TODO Auto-generated constructor stub
 	}
 
+	public String getCodigo() {
+		return this.codigo;
+	}
+
+	public BigDecimal getValor() {
+		return this.tipoPlano.getValor();
+	}
 }
