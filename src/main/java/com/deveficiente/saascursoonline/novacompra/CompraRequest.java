@@ -54,4 +54,9 @@ public class CompraRequest {
         this.documento = documento;
     }
 
+	public Compra toModel() {
+		
+		return new Compra(nome, email, dataNascimento, celular, nomeNf, endereco, bairro, cidade, tipoPlano, documento);
+	}
+
 }
