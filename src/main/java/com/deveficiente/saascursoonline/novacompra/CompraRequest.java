@@ -19,6 +19,7 @@ public class CompraRequest {
     private String email;
     @NotNull
     @JsonFormat(shape = Shape.STRING, pattern = "dd/MM/yyyy")
+    @Idade(value=18)
     private LocalDate dataNascimento;
     @NotBlank
     private String celular;
