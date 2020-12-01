@@ -1,12 +1,13 @@
 package com.deveficiente.saascursoonline.retornopaypal;
 
-import java.math.BigDecimal;
+import com.deveficiente.saascursoonline.novacompra.Compra;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
+import java.math.BigDecimal;
 
 public class RetornoPaypalRequest {
 	
@@ -16,6 +17,7 @@ public class RetornoPaypalRequest {
 	@NotBlank
 	private String codigoTx;
 	@NotBlank
+    @ExistsId(domainClass = Compra.class, fieldName ="codigo")
 	private String codigoApp;
 	@NotNull 
 	@Positive

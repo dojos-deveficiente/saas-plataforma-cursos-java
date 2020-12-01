@@ -25,7 +25,7 @@ public class CompraController {
 	public ResponseEntity<Void> comprar(@RequestBody @Valid CompraRequest request, UriComponentsBuilder uriComponentsBuilder) {
 		Compra novaCompra = request.toModel();
 		manager.persist(novaCompra);
-
+         System.out.println(novaCompra.getCodigo());
 		return ResponseEntity.status(HttpStatus.TEMPORARY_REDIRECT).location(novaCompra.geraURL(uriComponentsBuilder)).build();
 	}
 	

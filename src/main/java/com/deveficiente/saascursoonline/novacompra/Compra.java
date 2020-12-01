@@ -50,4 +50,8 @@ public class Compra {
 	public URI geraURL(UriComponentsBuilder uriComponentsBuilder) {
 		return uriComponentsBuilder.fromHttpUrl("http://gateway.paypal.com/payment?customId={codigoNaoFacilmenteEntendivel}&payment={valorDoPlanoEscolhido").build(this.codigo, this.tipoPlano.getValor());
 	}
+
+	public String getCodigo() {
+		 return this.codigo;
+	}
 }
