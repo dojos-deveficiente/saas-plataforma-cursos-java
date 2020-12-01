@@ -21,6 +21,6 @@ public class DocumentoValidador implements ConstraintValidator<Documento, String
             return cpf.isValid(documento, constraintValidatorContext)
                     || cnpj.isValid(documento, constraintValidatorContext);
         }
-        return false;
+        return true;
     }
 }
